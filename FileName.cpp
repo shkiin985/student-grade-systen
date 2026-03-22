@@ -1,24 +1,15 @@
 #include<iostream>
 #include<vector>
+#include<algorithm>
 int main() {
-	std::vector<int> nums;
-	nums.push_back(10);
-	nums.push_back(20);
-	nums.push_back(30);
-	nums.push_back(40);
-	nums.push_back(50);
-	int left = 0;
-	int right = nums.size() - 1;
-	while (left < right) {
-		int temp = nums[left];
-		nums[left] = nums[right];
-		nums[right] = temp;
-		left++;
-		right--;
+	std::vector<int> prices{ 7,1,5,3,6,4 };
+	int min_prics = prices[0];
+	int max_profit = 0;
+	for (int i = 1; i < prices.size(); i++) {
+		int current_price = prices[i];
+	    min_prics = std::min(min_prics, current_price);
+		max_profit = std::max(max_profit, current_price - min_prics);
 	}
-	for (int i = 0; i < nums.size(); i++) {
-		std::cout << nums[i] << " ";
-	}
-	std::cout << "\n";
+	std::cout << "最大利润为：" << max_profit << "\n";
 	return 0;
 }
